@@ -22,7 +22,7 @@ All necessary source amalgamations and pre-compiled libraries are included in th
 
 ## Building the Plugin
 
-These instructions use the Ninja generator for efficiency, but you can also use the default "Visual Studio" generator if you prefer working within the IDE solution file.
+These instructions use the Ninja generator. You should install this tool before proceeding, as it is required to build the project.
 
 ### Step 1: Prepare the Environment
 

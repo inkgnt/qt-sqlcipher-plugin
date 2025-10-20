@@ -1,58 +1,51 @@
-## QSQLCIPHER
+# qsqlcipher
 
-SQLCipher/sqlite plugin for Qt6 projects.
-Based on original CMakeLists.txt`s from Qt 6.7.3 srcs (from sqldrivers and sqlite3 folders) with minimal changes/additions. Checked on Visual Studio 2022 projects. Project uses OpenSSL x64 static libraries built for Visual Studio. If you need another libraries you should change CMakeLists.txt
+**SQLCipher/SQLite Plugin for Qt 6 Projects**
 
-### Prerequisites
+This project provides the necessary files and build instructions to compile a custom SQLCipher plugin for use with Qt 6 applications, enabling encrypted database support.
 
-1. [SQLCipher/sqlite amalgamation] уже предоставленны в проекте
-2. OpenSSL скомпилированные статические библиотеки также представлены в проекте, 
-вы можете создать свои амалагмации и скомпилировать OpenSSL если желаете
+It is based on original `CMakeLists.txt` files from the Qt source code (`sqldrivers` and `sqlite3` folders) with minimal modifications.
 
+---
 
-### Building debug and release plugins
-1. Open the Visual Studio Command Prompt (Tools -> Command Line -> Developer Command Prompt)
-2. cd to Projects folder
-3. Clone this project
-```
-> git clone 
-```
-5. cd to project folder and create .build folder and cd to it
-```
-> cd qsqlcipher
-> mkdir .build
-> cd .build
-```
-6. Configure the project (use your paths and keywords instead of example). Make sure all paths use '/' slash
-```
-> cmake .. -G "Ninja" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../.install -DQt6_DIR=c:/Qt/6.7.3/msvc2022_64/lib/cmake/Qt6
-также можно указать любой другой тип сборки, Debug, minsizerelease или типо того
-```
-7. Build and install
-```
-> cmake --build .
-> cmake --install .
-```
-### Usage
+## Prerequisites
 
-In .install folder you will find release and debug version of plugin. Just copy these files to sqldrivers folder of Qt6 installation and/or your project.
-So, now you can use your plugin
+All necessary source amalgamations and pre-compiled libraries are included in this repository for convenience. If you require different versions or architectures, you will need to replace the contents of the respective folders and potentially modify the `CMakeLists.txt` files.
 
-```cpp
-  auto db{QSqlDatabase::addDatabase("QSQLCIPHER")};
-  db.setDatabaseName("encrypted.db");
-	
-  if (!db.open())
-    return {};
+1.  **SQLCipher/SQLite Amalgamation:**
+    *   Source amalgamations obtained from SQLCipher v4.11.0 are already provided in the [sqlcipher_am](sqlcipher_am) folder.
 
-  QSqlQuery query(db);
+2.  **OpenSSL Static Libraries:**
+    *   Pre-compiled static OpenSSL v3.6.0 libraries are included in the [openssl](openssl) folder.
 
-  //Use the safer way to enter password 
-  query.exec("PRAGMA key = 'yourpassword';");
-  
-  ...
-```
+---
 
+## Building the Plugin
 
+These instructions use the Ninja generator for efficiency, but you can also use the default "Visual Studio" generator if you prefer working within the IDE solution file.
 
+### Step 1: Prepare the Environment
 
+1.  Open the **x64 Native Tools Command Prompt for VS 2022**. This ensures your environment variables are correctly set for a 64-bit build.
+2.  Navigate to your desired project location and clone the repository:
+
+    ```bash
+    git clone https://github.com/inkgnt/qsqlcipher-plugin.git
+    ```
+
+3.  Navigate into the project folder and create a dedicated build directory:
+
+    ```bash
+    cd qsqlcipher-plugin
+    mkdir .build
+    cd .build
+    ```
+
+### Step 2: Configure the Build
+
+Run CMake to configure the project. Be sure to **replace the paths** in the command below to match your specific Qt installation location. Use forward slashes (`/`) for paths.
+
+The flag `-DCMAKE_BUILD_TYPE=Release` is used to force a Release build type. If you prefer a different configuration, you can use any other valid build type, such as Debug, RelWithDebInfo, or MinSizeRel, in place of Release.
+
+```bash
+cmake .. -G "Ninja" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../.install -DQt6_DIR=c:/Qt/6.7.3/msvc2022_64/lib/cmake/Qt6

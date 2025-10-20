@@ -49,7 +49,10 @@ The flag `-DCMAKE_BUILD_TYPE=Release` is used to force a Release build type. If 
 
 ```bash
 cmake .. -G "Ninja" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../.install -DQt6_DIR=c:/Qt/6.7.3/msvc2022_64/lib/cmake/Qt6
+cmake --build .
+cmake --install .
 ```
+In the .install folder, you will find your version of the plugin. Simply copy these files to the sqldrivers folder in your Qt6 installation and/or your project. Once done, your plugin will be ready to use.
 
 ---
 

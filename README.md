@@ -51,7 +51,9 @@ The flag `-DCMAKE_BUILD_TYPE=Release` is used to force a Release build type. If 
 cmake .. -G "Ninja" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../.install -DQt6_DIR=c:/Qt/6.7.3/msvc2022_64/lib/cmake/Qt6
 ```
 
-### Licensing
+---
+
+## Licensing
 
 This project is distributed under the **[MIT License](LICENSE)**.
 

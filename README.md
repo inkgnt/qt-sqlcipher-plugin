@@ -1,4 +1,4 @@
-# qsqlcipher
+# qsqlcipher-plugin
 
 **SQLCipher/SQLite Plugin for Qt 6 Projects**
 

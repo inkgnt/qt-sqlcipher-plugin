@@ -56,6 +56,10 @@ In the .install folder, you will find your version of the plugin. Simply copy th
 
 ---
 
+## Usage
+
+You can see an example of usage in the [CryptPass](https://github.com/inkgnt/CryptPass) project.
+
 ## Licensing
 
 This project is distributed under the **[MIT License](LICENSE)**.
